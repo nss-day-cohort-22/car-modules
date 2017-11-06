@@ -1,13 +1,19 @@
-const carGarage = []
+const garage = []
 
-const garage = {
-    "retrieve": function (carId) {
-        return carGarage.find( car => car.id === carId )
+const garageSupervisor = Object.create(null, {
+    "store": {
+        value: function (car) {
+            garage.push(car)
+        }
     },
-    "park": function (car) {
-        carGarage.push(car)
+    "retrieve": {
+        value: function (carId) {
+            return garage.find(car => car.id === carId)
+        }
+    },
+    "inventory": {
+        get: () => garage
     }
-}
+})
 
-
-module.exports = garage
+module.exports = garageSupervisor
